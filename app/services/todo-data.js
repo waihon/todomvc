@@ -30,4 +30,9 @@ export default class TodoDataService extends Service {
 
     this.todos = [...this.todos, newTodo];
   }
+
+  @action
+  clearCompleted() {
+    this.todos = this.incomplete;
+  }
 }
