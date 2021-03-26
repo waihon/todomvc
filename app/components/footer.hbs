@@ -1,6 +1,12 @@
 <footer class="footer">
   <span class="todo-count">
-    <strong>{{this.todos.incomplete.length}}</strong> todos left
+    <strong>{{this.todos.incomplete.length}}</strong>
+      {{#if this.todos.todoCountIsOne}}
+        todo
+      {{else}}
+        todos
+      {{/if}}
+        left
   </span>
 
   <ul class="filters">
