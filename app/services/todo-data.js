@@ -48,4 +48,11 @@ export default class TodoDataService extends Service {
   toggleCompletion(todo) {
     todo.isCompleted = !todo.isCompleted;
   }
+
+  @action
+  remove(todo) {
+    this.todos = this.todos.filter(existing => {
+      return existing !== todo;
+    });
+  }
 }
