@@ -12,6 +12,7 @@
       type="button"
       class="destroy"
       title="Remove this todo"
+      {{ on 'click' (fn this.todos.remove @todo) }}
     ></button>
   </div>
 
