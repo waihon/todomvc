@@ -4,7 +4,7 @@
       class="toggle"
       type="checkbox"
       aria-label="Toggle the completion of this todo"
-      checked={{@todo.isComp:wleted}}
+      checked={{@todo.isCompleted}}
       {{ on 'change' (fn this.todos.toggleCompletion @todo) }}
     >
     <label>{{@todo.text}}</label>
