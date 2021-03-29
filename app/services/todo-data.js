@@ -14,6 +14,12 @@ class Todo {
 export default class TodoDataService extends Service {
   @tracked todos = [];
 
+  constructor(...args) {
+    super(...args);
+
+    this.todos = load();
+  }
+
   get all() {
     return this.todos;
   }
