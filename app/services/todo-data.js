@@ -43,16 +43,22 @@ export default class TodoDataService extends Service {
     let newTodo = new Todo(text);
 
     this.todos = [...this.todos, newTodo];
+
+    this.persist();
   }
 
   @action
   clearCompleted() {
     this.todos = this.incomplete;
+
+    this.persist();
   }
 
   @action
   toggleCompletion(todo) {
     todo.isCompleted = !todo.isCompleted;
+
+    this.persist();
   }
 
   @action
@@ -60,6 +66,12 @@ export default class TodoDataService extends Service {
     this.todos = this.todos.filter(existing => {
       return existing !== todo;
     });
+
+    this.persist();
+  }
+
+  @action persist() {
+    persist(this.todos);
   }
 }
 
