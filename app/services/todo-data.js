@@ -56,3 +56,41 @@ export default class TodoDataService extends Service {
     });
   }
 }
+
+/************************
+ * local storage helpers
+ ************************/
+function load() {
+  let jsonString = localStorage.getItem('todos');
+  let jsonArray = (jsonString && JSON.parse(jsonString));
+
+  let todos = deserializeTodoData(jsonArray);
+
+  return todos;
+}
+
+function persist(todos) {
+  let jsonArray = serializeTodos(todos);
+  let jsonString = JSON.stringify(jsonArray);
+
+  localStorage.setItem('todos', jsonString);
+
+  return jsonString;
+}
+
+function serializeTodos(todos) {
+  return todos.map(todo => ({
+    text: todo.text,
+    isCompleted: todo.isCompleted
+  }));
+}
+
+function deserializeTodoData(jsonArray) {
+  return (jsonArray || []).map(json => {
+    let todo = new Todo(json.text);
+
+    todo.isCompleted = json.isCompleted;
+
+    return todo;
+  });
+}
