@@ -1,7 +1,7 @@
 <footer class="footer">
   <span class="todo-count">
-    <strong>{{this.todos.incomplete.length}}</strong>
-    {{if this.todos.todoCountIsOne "todo" "todos"}}
+    <strong>{{this.todoData.incomplete.length}}</strong>
+    {{if this.todoData.todoCountIsOne "todo" "todos"}}
     left
   </span>
 
@@ -13,7 +13,7 @@
     </li>
   </ul>
 
-  <button type="button" class="clear-completed" {{on 'click' this.todos.clearCompleted}}>
+  <button type="button" class="clear-completed" {{on 'click' this.todoData.clearCompleted}}>
     Clear Completed
   </button>
 </footer>
