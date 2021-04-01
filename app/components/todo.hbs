@@ -5,14 +5,14 @@
       type="checkbox"
       aria-label="Toggle the completion of this todo"
       checked={{@todo.isCompleted}}
-      {{ on 'change' (fn this.todos.toggleCompletion @todo) }}
+      {{ on 'change' (fn this.todoData.toggleCompletion @todo) }}
     >
     <label>{{@todo.text}}</label>
     <button
       type="button"
       class="destroy"
       title="Remove this todo"
-      {{ on 'click' (fn this.todos.remove @todo) }}
+      {{ on 'click' (fn this.todoData.remove @todo) }}
     ></button>
   </div>
 
