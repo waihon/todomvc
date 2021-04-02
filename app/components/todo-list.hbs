@@ -1,10 +1,24 @@
-<section class="main">
-  <input id="mark-all-complete" class="toggle-all" type="checkbox">
-  <label for="mark-all-complete">Mark all as complete</label>
+{{#if @todos.length}}
+  <section class="main">
+    {{#if this.canToggle}}
+      <input
+        id="toggle-all"
+        class="toggle-all"
+        type="checkbox"
+        checked={{this.areAllCompleted}}
+        {{on 'change' this.toggleAll}}
+      >
+      <label for="toggle-all">Mark all as complete</label>
+    {{/if}}
 
-  <ul class="todo-list">
-    {{#each @todos as |todo|}}
-      <Todo @todo={{todo}} />
-    {{/each}}
-  </ul>
-</section>
+    <ul class="todo-list">
+      {{#each @todos as |todo|}}
+        <Todo
+          @todo={{todo}}
+          @onStartEditing={{this.disableToggle}}
+          @onFinishEditing={{this.enableToggle}}
+        />
+      {{/each}}
+    </ul>
+  </section>
+{{/if}}
