@@ -7,7 +7,7 @@
       checked={{@todo.isCompleted}}
       {{ on 'change' (fn this.todoData.toggleCompletion @todo) }}
     >
-    <label>{{@todo.text}}</label>
+    <label>{{@todo.title}}</label>
     <button
       type="button"
       class="destroy"
@@ -16,5 +16,5 @@
     ></button>
   </div>
 
-  <input autofocus class="edit" value="Todo Text">
+  <input autofocus class="edit" value="Todo Title">
 </li>

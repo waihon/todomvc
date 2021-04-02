@@ -3,11 +3,11 @@ import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 
 class Todo {
-  @tracked text = '';
+  @tracked title = '';
   @tracked isCompleted = false;
 
-  constructor(text) {
-    this.text = text;
+  constructor(title) {
+    this.title = title;
   }
 }
 
@@ -38,9 +38,8 @@ export default class TodoDataService extends Service {
     return this.todos.filter(todo => todo.isCompleted);
   }
 
-  @action
-  add(text) {
-    let newTodo = new Todo(text);
+  @action add(title) {
+    let newTodo = new Todo(title);
 
     this.todos = [...this.todos, newTodo];
 
@@ -98,14 +97,14 @@ function persist(todos) {
 
 function serializeTodos(todos) {
   return todos.map(todo => ({
-    text: todo.text,
+    title: todo.title,
     isCompleted: todo.isCompleted
   }));
 }
 
 function deserializeTodoData(jsonArray) {
   return (jsonArray || []).map(json => {
-    let todo = new Todo(json.text);
+    let todo = new Todo(json.title);
 
     todo.isCompleted = json.isCompleted;
 
