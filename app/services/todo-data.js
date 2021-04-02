@@ -4,7 +4,7 @@ import { action } from '@ember/object';
 
 class Todo {
   @tracked title = '';
-  @tracked isCompleted = false;
+  @tracked completed = false;
 
   constructor(title) {
     this.title = title;
@@ -26,7 +26,7 @@ export default class TodoDataService extends Service {
 
   get incomplete() {
     return this.todos.filter(todo => {
-      return todo.isCompleted === false;
+      return todo.completed === false;
     });
   }
 
@@ -35,7 +35,7 @@ export default class TodoDataService extends Service {
   }
 
   get completed() {
-    return this.todos.filter(todo => todo.isCompleted);
+    return this.todos.filter(todo => todo.completed);
   }
 
   @action add(title) {
@@ -53,9 +53,8 @@ export default class TodoDataService extends Service {
     this.persist();
   }
 
-  @action
-  toggleCompletion(todo) {
-    todo.isCompleted = !todo.isCompleted;
+  @action toggleCompletion(todo) {
+    todo.completed = !todo.completed;
 
     this.persist();
   }
@@ -98,7 +97,7 @@ function persist(todos) {
 function serializeTodos(todos) {
   return todos.map(todo => ({
     title: todo.title,
-    isCompleted: todo.isCompleted
+    completed: todo.completed
   }));
 }
 
@@ -106,7 +105,7 @@ function deserializeTodoData(jsonArray) {
   return (jsonArray || []).map(json => {
     let todo = new Todo(json.title);
 
-    todo.isCompleted = json.isCompleted;
+    todo.completed = json.completed;
 
     return todo;
   });

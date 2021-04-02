@@ -1,10 +1,10 @@
-<li class="{{if @todo.isCompleted 'completed'}}">
+<li class="{{if @todo.completed 'completed'}}">
   <div class="view">
     <input
       class="toggle"
       type="checkbox"
       aria-label="Toggle the completion of this todo"
-      checked={{@todo.isCompleted}}
+      checked={{@todo.completed}}
       {{ on 'change' (fn this.todoData.toggleCompletion @todo) }}
     >
     <label>{{@todo.title}}</label>
