@@ -1,13 +1,19 @@
-<li class="{{if @todo.completed 'completed'}}">
+<li class="
+  {{if @todo.completed 'completed'}}
+  {{if this.isEditing 'editing'}}
+">
   <div class="view">
     <input
+      aria-label="Toggle the completion of this todo"
       class="toggle"
       type="checkbox"
-      aria-label="Toggle the completion of this todo"
       checked={{@todo.completed}}
-      {{ on 'change' (fn this.todoData.toggle @todo) }}
+      {{ on 'change' this.complete }}
     >
-    <label>{{@todo.title}}</label>
+    <label {{on 'dblclick' this.edit}}>
+      {{@todo.title}}
+    </label>
+
     <button
       type="button"
       class="destroy"
@@ -16,5 +22,13 @@
     ></button>
   </div>
 
-  <input autofocus class="edit" value="Todo Title">
+  {{! https://github.com/emberjs/ember-render-modifiers}}
+  <input
+    autofocus
+    class="edit"
+    value={{@todo.title}}
+    {{did-insert this.createRef}}
+    {{on 'blur' this.finish}}
+    {{on 'keydown' this.onKeyDown}}
+  >
 </li>
