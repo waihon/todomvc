@@ -52,7 +52,7 @@ export default class TodoDataService extends Service {
     this.persist();
   }
 
-  @action toggleCompletion(todo) {
+  @action toggle(todo) {
     todo.completed = !todo.completed;
 
     this.persist();

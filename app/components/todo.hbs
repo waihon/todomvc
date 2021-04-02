@@ -5,7 +5,7 @@
       type="checkbox"
       aria-label="Toggle the completion of this todo"
       checked={{@todo.completed}}
-      {{ on 'change' (fn this.todoData.toggleCompletion @todo) }}
+      {{ on 'change' (fn this.todoData.toggle @todo) }}
     >
     <label>{{@todo.title}}</label>
     <button
