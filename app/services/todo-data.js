@@ -12,20 +12,20 @@ class Todo {
 }
 
 export default class TodoDataService extends Service {
-  @tracked todos = [];
+  @tracked data = [];
 
   constructor(...args) {
     super(...args);
 
-    this.todos = load();
+    this.data = load();
   }
 
   get all() {
-    return this.todos;
+    return this.data;
   }
 
   get incomplete() {
-    return this.todos.filter(todo => {
+    return this.data.filter(todo => {
       return todo.completed === false;
     });
   }
@@ -35,20 +35,19 @@ export default class TodoDataService extends Service {
   }
 
   get completed() {
-    return this.todos.filter(todo => todo.completed);
+    return this.data.filter(todo => todo.completed);
   }
 
   @action add(title) {
     let newTodo = new Todo(title);
 
-    this.todos = [...this.todos, newTodo];
+    this.data = [...this.data, newTodo];
 
     this.persist();
   }
 
-  @action
-  clearCompleted() {
-    this.todos = this.incomplete;
+  @action clearCompleted() {
+    this.data = this.incomplete;
 
     this.persist();
   }
@@ -59,9 +58,8 @@ export default class TodoDataService extends Service {
     this.persist();
   }
 
-  @action
-  remove(todo) {
-    this.todos = this.todos.filter(existing => {
+  @action remove(todo) {
+    this.data = this.data.filter(existing => {
       return existing !== todo;
     });
 
@@ -69,7 +67,7 @@ export default class TodoDataService extends Service {
   }
 
   @action persist() {
-    persist(this.todos);
+    persist(this.data);
   }
 }
 
