@@ -66,6 +66,12 @@ export default class TodoDataService extends Service {
     this.persist();
   }
 
+  @action updateTitle(todo, title) {
+    todo.title = title;
+
+    this.persist();
+  }
+
   @action persist() {
     persist(this.data);
   }
